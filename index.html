@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basic Registration Form</title>
+  <style>
+    :root { --max: 640px; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.4; margin: 0; background: #f7f7fb; color: #222; }
+    header { padding: 2rem 1rem; text-align: center; }
+    h1 { margin: 0 0 .25rem; font-size: 1.6rem; }
+    p.sub { margin: 0; color: #555; }
+    form { background: #fff; width: min(100% - 2rem, var(--max)); margin: 1rem auto 2rem; padding: 1rem; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+    fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .full { grid-column: 1 / -1; }
+    label { display: block; font-weight: 600; margin: .25rem 0 .35rem; }
+    input, select, textarea { width: 100%; padding: .65rem .75rem; border: 1px solid #d9d9e3; border-radius: 10px; font: inherit; background: #fff; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #6b8afd; box-shadow: 0 0 0 3px rgba(107,138,253,.2); }
+    .row { margin-bottom: 1rem; }
+    .hint { color: #666; font-size: .85rem; margin-top: .35rem; }
+    .actions { display: flex; gap: .75rem; justify-content: flex-end; padding-top: .5rem; }
+    button { appearance: none; border: 0; border-radius: 10px; padding: .7rem 1rem; font: inherit; cursor: pointer; }
+    button[type="submit"] { background: #4f7cff; color: white; }
+    button[type="reset"] { background: #eef1ff; color: #2a2a2a; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Registration Form</h1>
+    <p class="sub">A simple HTML form with basic validation.</p>
+  </header>
+
+  <form action="/submit" method="post" autocomplete="on">
+    <fieldset class="grid">
+      <div class="row">
+        <label for="firstName">First name</label>
+        <input id="firstName" name="firstName" type="text" placeholder="Shauryam" required autocomplete="given-name" />
+      </div>
+
+      <div class="row">
+        <label for="lastName">Last name</label>
+        <input id="lastName" name="lastName" type="text" placeholder="Doe" required autocomplete="family-name" />
+      </div>
+
+      <div class="row full">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
+      </div>
+
+      <div class="row">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" minlength="8" placeholder="Min 8 characters" required autocomplete="new-password" />
+        <div class="hint">At least 8 characters.</div>
+      </div>
+
+      <div class="row">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{10}" placeholder="10-digit number" autocomplete="tel" />
+        <div class="hint">Digits only, e.g. 9876543210</div>
+      </div>
+
+      <div class="row full">
+        <label for="role">Role</label>
+        <select id="role" name="role" required>
+          <option value="" disabled selected>Select one...</option>
+          <option>Student</option>
+          <option>Developer</option>
+          <option>Designer</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="row full">
+        <label for="about">About you</label>
+        <textarea id="about" name="about" rows="4" placeholder="Tell us a bit about yourself..."></textarea>
+      </div>
+
+      <div class="row full">
+        <label>
+          <input type="checkbox" name="terms" required /> I agree to the Terms and Privacy Policy
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="reset">Clear</button>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <!-- Notes:
+    - Replace action="/submit" with your backend endpoint (e.g., an API Gateway/Lambda URL or your server route).
+    - Add HTTPS using a valid certificate if deploying publicly.
+  -->
+</body>
+</html>
